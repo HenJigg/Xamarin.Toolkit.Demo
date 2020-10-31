@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinToolKit.MainPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackLayout BackgroundColor="#1E90FF" Padding="15">
+            <Label Text="Hi,痕迹！" 
+                   HorizontalOptions="Start" 
+                   TextColor="White"
+                   FontSize="24"/>
+        </StackLayout>
+
+
+        <CollectionView x:Name="collectionView" 
+                        Grid.Row="1"
+                        ItemsSource="{Binding GridModelList}"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding SelectionChangedCommand}"
+                        SelectionChangedCommandParameter="{Binding Source={x:Reference collectionView},
+            Path=SelectedItem}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" Orientation="Horizontal">
+                        <Label Text="{Binding GroupIcon}" FontFamily="iconfont.ttf#" FontSize="40"/>
+                        <StackLayout Margin="5,0">
+                            <Label Text="{Binding GroupName}" FontSize="22"/>
+                            <Label Text="{Binding GroupDesc}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        
+    </Grid>
+</ContentPage>

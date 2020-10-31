@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinToolKit.MainDetailPage">
+    <Grid BackgroundColor="#1E90FF">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView Grid.RowSpan="2"  RowHeight="40"
+                  SelectionMode="None" HasUnevenRows="True" SeparatorVisibility="None"
+                  ItemsSource="{Binding GridModelDetailList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <SwipeView Margin="5" BackgroundColor="White">
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="编辑" 
+                                               Command="{Binding Source={x:RelativeSource 
+                                        AncestorType={x:Type ContentPage}},Path=BindingContext.EditCommand}"
+                                               CommandParameter="{Binding Id}"
+                                               BackgroundColor="Green"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="删除" 
+                                                 Command="{Binding Source={x:RelativeSource 
+                                        AncestorType={x:Type ContentPage}},Path=BindingContext.DeleteCommand}"
+                                               CommandParameter="{Binding Id}"
+                                               BackgroundColor="Red"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <Grid VerticalOptions="Center" Padding="10,0" Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <Label Text="{Binding Name}" FontSize="22" />
+                                <StackLayout Grid.Row="1">
+                                    <Label Text="{Binding Account}"/>
+                                    <Label Text="{Binding PassWord}"/>
+                                </StackLayout>
+                            </Grid>
+                        </SwipeView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Grid.Row="1" Text="+" FontSize="20" WidthRequest="50" TextColor="White"
+                Command="{Binding AddCommand}"
+                HorizontalOptions="EndAndExpand" Margin="0,0,10,10"
+                CornerRadius="30" BackgroundColor="DeepPink"/>
+    </Grid>
+</ContentPage>
